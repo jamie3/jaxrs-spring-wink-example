@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_1" version="2.5" xmlns="http://java.sun.com/xml/ns/j2ee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"> 
+        
+        <!-- 
+    <servlet>
+        <servlet-name>DeliveryServlet</servlet-name>
+        <servlet-class>com.ibm.websphere.jaxrs.server.IBMRestServlet</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.westjet.ens.delivery.rest.ApplicationConfig</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeliveryServlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    -->
+   
+    <servlet>
+	    <servlet-name>restServlet</servlet-name>
+	    <servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
+	    <load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>restServlet</servlet-name>
+	    <url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+    
+    <!-- Integrates Wink and Spring -->
+    <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:/WEB-INF/rest-application.xml
+			classpath:/META-INF/server/wink-core-context.xml
+		</param-value>
+	</context-param>
+    
+	<!-- Loads the beanRefContext that is shared across the modules in the EAR -->
+	<!-- 
+	<context-param>
+	    <param-name>locatorFactorySelector</param-name>
+	    <param-value>classpath:beanRefContext.xml</param-value>
+	</context-param>
+	<context-param>
+	    <param-name>parentContextKey</param-name>
+	    <param-value>app.context</param-value>
+	</context-param>
+	 -->
+	
+    <listener>
+    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+</web-app>

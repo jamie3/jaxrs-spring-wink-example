@@ -1,10 +1,47 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-  	<groupId>jaxrs.spring.wink.example</groupId>
-  	<artifactId>jaxrs-spring-wink-example</artifactId>
-  	<version>1.0.0</version>
-  </parent>
-  <artifactId>spring-wink-example-ear</artifactId>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>jaxrs.spring.wink.example</groupId>
+		<artifactId>jaxrs-spring-wink-example</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>jaxrs-spring-wink-example-ear</artifactId>
+
+	<packaging>ear</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>jaxrs.spring.wink.example</groupId>
+			<artifactId>jaxrs-spring-wink-example-rest</artifactId>
+			<version>1.0.0</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<version>6</version>
+					<defaultLibBundleDir>lib/</defaultLibBundleDir>
+					<!--  <applicationXml>${basedir}/src/main/application/application.xml</applicationXml>
+					<generateApplicationXml>false</generateApplicationXml>-->
+					<!-- <skinnyWars>true</skinnyWars> -->
+					<modules>
+						<webModule>
+							<groupId>jaxrs.spring.wink.example</groupId>
+							<artifactId>jaxrs-spring-wink-example-rest</artifactId>
+							<moduleId>WebModuleDeployment_1175527200552</moduleId>
+							<contextRoot>/jaxrs-spring-wink-example-rest</contextRoot>
+							<uri>jaxrs-spring-wink-example-rest.war</uri>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
